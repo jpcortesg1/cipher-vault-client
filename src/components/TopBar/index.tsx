@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -35,7 +36,7 @@ export default function TopBar() {
   // Change topbar style on scroll
   useEffect(() => {
     const scrollDown = [
-      "bg-gray-950",
+      "bg-[#6C63FF]",
       "min-w-full",
       "max-w-full",
       "mt-0",
@@ -55,10 +56,21 @@ export default function TopBar() {
 
   return (
     <nav
-      className="min-w-[90%] max-w-[90%] flex justify-between mx-auto sticky top-0 my-10 bg-transparent p-4 shadow-gray-950 shadow-lg rounded-lg z-50 transition-all duration-300 ease-in-out"
+      className="min-w-[90%] max-w-[90%] flex justify-between items-center mx-auto sticky top-0 my-10 bg-transparent p-4 shadow-gray-950 shadow-lg rounded-lg z-50 transition-all duration-300 ease-in-out"
       ref={topBar}
     >
-      <Link href="/">Cipher Vault</Link>
+      <Link
+        href="/"
+        className="flex justify-between items-center text-xl font-extrabold gap-4" 
+      >
+        <Image
+          src="/images/logo.png"
+          width={50}
+          height={50}
+          alt="Logo of cipher vault"
+        />
+        <span>Cipher</span>
+      </Link>
 
       <div className="flex justify-between gap-4 text-lg">
         {links.map(({ href, text }) => (
