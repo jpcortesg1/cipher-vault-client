@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-gray-300 py-8">
+    <footer className="bg-gray-800 text-gray-300 py-8 mt-8">
       <div className="container mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mb-4 md:mb-0">
           <h3 className="text-base font-semibold mb-2 md:text-lg">Cipher Vault</h3>

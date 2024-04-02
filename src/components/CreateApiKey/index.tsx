@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export default function CreateApiKey() {
@@ -8,6 +8,10 @@ export default function CreateApiKey() {
 
   // State for open and close form
   const [isDown, setIsDown] = useState<boolean>(false);
+  const [body, setBody] = useState({
+    email: "",
+    description: "",
+  });
 
   // Dates
   let today = new Date();
@@ -40,6 +44,33 @@ export default function CreateApiKey() {
     setIsDown(() => true);
   };
 
+  // On change input
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setBody((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // xj90xj-kom5qn-t9lmev-1disg2
+  // jpcortesg1@hotmail.com
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const res = await fetch("/api/api-key/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      console.log("🚀 ~ onSubmit ~ data:", data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <button
@@ -53,39 +84,46 @@ export default function CreateApiKey() {
         action=""
         className="h-0 overflow-hidden ease-in-out duration-300 transition-all rounded-md rounded-t-none flex flex-col justify-between gap-4"
         ref={formCreate}
+        onSubmit={onSubmit}
       >
         <div>
           <label htmlFor="" className="text-sm md:text-base">
-            Email
+            Email (*)
           </label>
           <input
             type="email"
             className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
             placeholder="cipher-vault@mail.com"
+            name="email"
+            onChange={onChangeInput}
+            required
           />
         </div>
 
         <div>
           <label htmlFor="" className="text-sm md:text-base">
-            Description
+            Description (*)
           </label>
           <input
             type="text"
             className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
             placeholder="App security"
+            name="description"
+            onChange={onChangeInput}
+            required
           />
         </div>
 
         <div>
-          <label htmlFor="" className="text-sm md:text-base">
-            Expire At
-          </label>
+          <label className="text-sm md:text-base">Expire At</label>
           <input
             type="date"
             className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
             min={today.toISOString().split("T")[0]}
             max={twoMonths.toISOString().split("T")[0]}
             placeholder="App security"
+            name="expireAt"
+            onChange={onChangeInput}
           />
         </div>
         <button className="bg-[#6C63FF] mx-auto p-4 py-2 rounded-lg text-base md:text-lg">
