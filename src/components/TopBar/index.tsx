@@ -2,17 +2,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiHome } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { LuKeyRound } from "react-icons/lu";
 import { MdOutlineNoEncryption } from "react-icons/md";
-import { RxLockOpen2 } from "react-icons/rx";
+import { RxHamburgerMenu, RxLockOpen2 } from "react-icons/rx";
 
 export default function TopBar() {
   // Ref topbar
   const topBar = useRef<HTMLDivElement>(null);
+  const itemsSm = useRef<HTMLDivElement>(null);
   const pathName = usePathname();
+
+  // States
+  const [isOpen, setIsOpen] = useState(false);
 
   // Items
   const links = [
@@ -43,6 +48,26 @@ export default function TopBar() {
     },
   ];
 
+  // Open and close menu
+  const handleMenu = () => {
+    if (!itemsSm.current) return;
+
+    // Values
+    const possibleHeight = itemsSm.current.scrollHeight;
+    const currentHeightNumber = parseFloat(itemsSm.current.style.height);
+
+    // Close items
+    if (currentHeightNumber > 0) {
+      itemsSm.current.style.height = "0px";
+      setIsOpen(() => false);
+      return;
+    }
+
+    // Open items
+    itemsSm.current.style.height = possibleHeight + "px";
+    setIsOpen(() => true);
+  };
+
   // Change topbar style on scroll
   useEffect(() => {
     const scrollDown = [
@@ -67,7 +92,7 @@ export default function TopBar() {
 
   return (
     <nav
-      className="min-w-[90%] max-w-[90%] flex justify-between items-center mx-auto sticky top-0 my-10 p-4 shadow-gray-950 shadow-lg rounded-lg z-50 transition-all duration-300 ease-in-out"
+      className="min-w-[90%] flex-wrap max-w-[90%] flex justify-between items-center mx-auto sticky top-0 my-10 p-4 shadow-gray-950 shadow-lg rounded-lg z-50 transition-all duration-300 ease-in-out md:flex-nowrap"
       ref={topBar}
     >
       <Link
@@ -83,7 +108,34 @@ export default function TopBar() {
         <span>Cipher</span>
       </Link>
 
-      <div className="flex justify-between gap-3 text-lg">
+      <div className="justify-between gap-3 text-lg hidden md:flex">
+        {links.map(({ href, text, icon }) => (
+          <Link
+            key={text}
+            href={href}
+            className={
+              (pathName === href
+                ? "text-gray-50 hover:text-gray-50 font-bold ease-in-out duration-300 transition-all"
+                : "text-gray-300 hover:text-gray-50 ease-in-out duration-300 transition-all") +
+              " flex items-center gap-1"
+            }
+          >
+            {icon} {text}
+          </Link>
+        ))}
+      </div>
+
+      <button
+        className="text-2xl items-center justify-center flex md:hidden"
+        onClick={handleMenu}
+      >
+        {isOpen ? <IoMdClose /> : <RxHamburgerMenu />}
+      </button>
+
+      <div
+        ref={itemsSm}
+        className="justify-between gap-3 text-lg flex flex-col w-full items-center h-0 overflow-hidden ease-in-out duration-300 transition-all md:hidden"
+      >
         {links.map(({ href, text, icon }) => (
           <Link
             key={text}

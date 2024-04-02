@@ -1,10 +1,13 @@
 "use client";
-import { useRef } from "react";
-import { FaAngleDown } from "react-icons/fa";
+import { useRef, useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export default function CreateApiKey() {
-  // Ref
+  // Ref form
   const formCreate = useRef<HTMLFormElement>(null);
+
+  // State for open and close form
+  const [isDown, setIsDown] = useState<boolean>(false);
 
   // Dates
   let today = new Date();
@@ -16,19 +19,25 @@ export default function CreateApiKey() {
   // Handle open and close form create
   const handleOpenFormCreate = () => {
     if (!formCreate?.current) return;
+
+    // Values
     const posibbleHeight = formCreate.current.scrollHeight;
     const currentHeightNumber = parseFloat(formCreate.current.style.height);
 
+    // Close form
     if (currentHeightNumber > 0) {
       formCreate.current.classList.remove("p-4");
       formCreate.current.classList.remove("border-2");
       formCreate.current.style.height = "0px";
+      setIsDown(() => false);
       return;
     }
 
+    // Open form
     formCreate.current.style.height = posibbleHeight + 32 + "px";
     formCreate.current.classList.add("p-4");
     formCreate.current.classList.add("border-2");
+    setIsDown(() => true);
   };
 
   return (
@@ -36,10 +45,9 @@ export default function CreateApiKey() {
       <button
         className="text-2xl w-full flex justify-between border-2 p-4 rounded-md items-center rounded-b-none text-[#6C63FF]"
         onClick={handleOpenFormCreate}
-        value={"hola"}
       >
         Create
-        <FaAngleDown />
+        {isDown ? <FaAngleUp /> : <FaAngleDown />}
       </button>
       <form
         action=""
