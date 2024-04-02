@@ -43,7 +43,7 @@ export default function CreateApiKey() {
   return (
     <div>
       <button
-        className="text-2xl w-full flex justify-between border-2 p-4 rounded-md items-center rounded-b-none text-[#6C63FF]"
+        className="text-xl w-full flex justify-between border-2 p-4 rounded-md items-center rounded-b-none text-[#6C63FF] md:text-2xl"
         onClick={handleOpenFormCreate}
       >
         Create
@@ -51,32 +51,46 @@ export default function CreateApiKey() {
       </button>
       <form
         action=""
-        className="h-0 overflow-hidden ease-in-out duration-300 transition-all rounded-md rounded-t-none"
+        className="h-0 overflow-hidden ease-in-out duration-300 transition-all rounded-md rounded-t-none flex flex-col justify-between gap-4"
         ref={formCreate}
       >
-        <label htmlFor="">Email</label>
-        <input
-          type="email"
-          className="w-full p-2 rounded-md text-gray-950"
-          placeholder="cipher-vault@mail.com"
-        />
+        <div>
+          <label htmlFor="" className="text-sm md:text-base">
+            Email
+          </label>
+          <input
+            type="email"
+            className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
+            placeholder="cipher-vault@mail.com"
+          />
+        </div>
 
-        <label htmlFor="">Description</label>
-        <input
-          type="text"
-          className="w-full p-2 rounded-md text-gray-950"
-          placeholder="App security"
-        />
+        <div>
+          <label htmlFor="" className="text-sm md:text-base">
+            Description
+          </label>
+          <input
+            type="text"
+            className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
+            placeholder="App security"
+          />
+        </div>
 
-        <label htmlFor="">Expire At</label>
-        <input
-          type="date"
-          className="w-full p-2 rounded-md text-gray-950"
-          min={today.toISOString().split("T")[0]}
-          max={twoMonths.toISOString().split("T")[0]}
-          placeholder="App security"
-        />
-        <button>Create</button>
+        <div>
+          <label htmlFor="" className="text-sm md:text-base">
+            Expire At
+          </label>
+          <input
+            type="date"
+            className="w-full p-2 rounded-md text-gray-950 text-base md:text-lg"
+            min={today.toISOString().split("T")[0]}
+            max={twoMonths.toISOString().split("T")[0]}
+            placeholder="App security"
+          />
+        </div>
+        <button className="bg-[#6C63FF] mx-auto p-4 py-2 rounded-lg text-base md:text-lg">
+          Create
+        </button>
       </form>
     </div>
   );

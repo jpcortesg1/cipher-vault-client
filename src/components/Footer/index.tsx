@@ -5,13 +5,13 @@ export default function Footer() {
     <footer className="bg-gray-800 text-gray-300 py-8">
       <div className="container mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mb-4 md:mb-0">
-          <h3 className="text-lg font-semibold mb-2">Cipher Vault</h3>
-          <p className="text-sm">Secure Encryption Platform</p>
-          <p className="text-sm">Medellín, Colombia</p>
+          <h3 className="text-base font-semibold mb-2 md:text-lg">Cipher Vault</h3>
+          <p className="text-sm md:text-base">Secure Encryption Platform</p>
+          <p className="text-sm md:text-base">Medellín, Colombia</p>
         </div>
 
         <div className="w-full md:w-1/4 mb-4 md:mb-0">
-          <h3 className="text-lg font-semibold mb-2">Helpful Links</h3>
+          <h3 className="text-base font-semibold mb-2 md:text-lg">Helpful Links</h3>
           <ul className="list-none">
             <li>
               <a href="https://api-cipher-vault.jpcortesg.online/api-docs/">
@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
 
         <div className="w-full md:w-1/4 mb-4 md:mb-0">
-          <h3 className="text-lg font-semibold mb-2">Redes sociales</h3>
+          <h3 className="text-base font-semibold mb-2 md:text-lg">Redes sociales</h3>
           <ul className="list-none">
             <li>
               <a href="https://www.linkedin.com/in/juan-pablo-cortes-gonzalez-b5ab591b8/">
@@ -39,13 +39,13 @@ export default function Footer() {
         </div>
 
         <div className="w-full md:w-1/4 mb-4 md:mb-0">
-          <h3 className="text-lg font-semibold mb-2">Contact</h3>
-          <p className="text-sm">jpcortesg@hotmail.com</p>
-          <p className="text-sm">(+57) 3128949458</p>
+          <h3 className="text-base font-semibold mb-2 md:text-lg">Contact</h3>
+          <p className="text-sm md:text-base">jpcortesg@hotmail.com</p>
+          <p className="text-sm md:text-base">(+57) 3128949458</p>
         </div>
       </div>
 
-      <div className="container mx-auto mt-4 text-sm text-center">
+      <div className="container mx-auto mt-4 text-sm md:text-base text-center">
         <p>
           &copy;{new Date().getFullYear()} Cipher Vault. All rights reserved.
         </p>

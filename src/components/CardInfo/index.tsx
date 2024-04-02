@@ -21,8 +21,8 @@ export default function CardInfo({
         flexDirection: reverse ? "row-reverse" : "row",
       }}
     >
-      <div className="flex flex-col justify-evenly flex-1 text-xl min-w-[250px]">
-        <h2 className="text-2xl font-bold text-center text-[#6C63FF]">
+      <div className="flex flex-col justify-evenly flex-1 text-base min-w-[250px] gap-4 md:text-lg">
+        <h2 className="text-xl font-bold text-center text-[#6C63FF] md:text-2xl">
           {title}
         </h2>
         {description}

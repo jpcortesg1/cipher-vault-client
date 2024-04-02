@@ -97,7 +97,7 @@ export default function TopBar() {
     >
       <Link
         href="/"
-        className="flex justify-between items-center text-xl font-extrabold gap-4"
+        className="flex justify-between items-center text-lg font-extrabold gap-4 md:text-xl"
       >
         <Image
           src="/images/logo.png"
@@ -108,7 +108,7 @@ export default function TopBar() {
         <span>Cipher</span>
       </Link>
 
-      <div className="justify-between gap-3 text-lg hidden md:flex">
+      <div className="justify-between gap-3 text-base hidden md:flex">
         {links.map(({ href, text, icon }) => (
           <Link
             key={text}
@@ -124,7 +124,8 @@ export default function TopBar() {
           </Link>
         ))}
       </div>
-
+        
+      {/* Size small */}
       <button
         className="text-2xl items-center justify-center flex md:hidden"
         onClick={handleMenu}
@@ -134,7 +135,7 @@ export default function TopBar() {
 
       <div
         ref={itemsSm}
-        className="justify-between gap-3 text-lg flex flex-col w-full items-center h-0 overflow-hidden ease-in-out duration-300 transition-all md:hidden"
+        className="justify-between gap-3 text-base flex flex-col w-full items-center h-0 overflow-hidden ease-in-out duration-300 transition-all md:hidden"
       >
         {links.map(({ href, text, icon }) => (
           <Link

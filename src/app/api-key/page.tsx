@@ -4,7 +4,7 @@ export default function ApiKey() {
 
   return (
     <div>
-      <h1 className="text-4xl text-center text-[#6C63FF]">
+      <h1 className="text-2xl text-center text-[#6C63FF] md:text-3xl">
         Management of <span className="font-bold">API Key</span>
       </h1>
 
