@@ -60,13 +60,17 @@ export default function Home() {
   ];
 
   return (
-    <div className="container mx-auto flex flex-col gap-12">
-      <h1 className="text-4xl text-center text-[#6C63FF]">
-        Cipher <span className="font-bold">Vault:</span> Secure Your{" "}
-        <span className="font-bold">Data</span> with{" "}
-        <span className="font-bold">Confidence</span>
-      </h1>
-      <p className="text-xl">
+    <div className="flex flex-col gap-12">
+      <div>
+        <h1 className="text-4xl text-center text-[#6C63FF]">
+          Cipher <span className="font-bold">Vault:</span>
+        </h1>
+        <h2 className="text-4xl text-center text-[#6C63FF]">
+          Secure Your <span className="font-bold">Data</span> with{" "}
+          <span className="font-bold">Confidence</span>
+        </h2>
+      </div>
+      <p className="text-xl p-4">
         At Cipher Vault, we understand the paramount importance of safeguarding
         sensitive information in today&#39;s digital age. Our Cipher Vault API
         is meticulously crafted to offer a robust encryption platform that

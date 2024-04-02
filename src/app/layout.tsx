@@ -20,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TopBar />
+        <main className="min-h-[calc(100vh_-_154px)] container mx-auto">
         {children}
+        </main>
         <Footer />
       </body>
     </html>
